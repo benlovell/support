@@ -1,0 +1,23 @@
+<%= content_for :page_title, "#{@slug} | Service feedback" %>
+<%= content_for :header, raw(@slug + ' <small>feedback for ' + @day.to_s(:govuk_date) + "</small>") %>
+<%= content_for :breadcrumb do %>
+  <li><%= link_to 'Explore anonymous feedback', anonymous_feedback_explore_path %></li>
+  <li class='active'>Service feedback</li>
+  <li class='active'><%= @slug %></li>
+  <li class='active'><%= @day.to_s(:govuk_date) %></li>
+<% end %>
+
+<div id="service-feedback">
+  <%= render partial: "pager", locals: { slug: @slug, day: @day } %>
+
+  <% if @day_aggregate["total"] == 0 %>
+    <div class="no-content no-content-bordered">There is no feedback for this day.</div>
+  <% else %>
+    <%= render partial: "summary",
+               locals: { comments_by_rating: @comments_by_rating, day_aggregate: @day_aggregate } %>
+
+    <% unless @comments_by_rating.empty? %>
+      <%= render partial: "comments_table", locals: { comments_by_rating: @comments_by_rating } %>
+    <% end %>
+  <% end %>
+</div>

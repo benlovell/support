@@ -32,6 +32,12 @@
 <% end %>
 
 <% content_for :content do %>
+  <% if content_for?(:breadcrumb) %>
+    <ul class="breadcrumb">
+      <%= yield :breadcrumb %>
+    </ul>
+  <% end %>
+
   <h1 class="page-header"><%= yield :header %></h1>
 
   <%= yield %>

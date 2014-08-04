@@ -1,0 +1,39 @@
+<% percent_satisfied = 100 * (day_aggregate["rating_4"] + day_aggregate["rating_5"]) / day_aggregate["total"].to_f %>
+
+<h2 id="summary" class="add-bottom-margin"><%= number_to_percentage(percent_satisfied, precision: 0) %> were satisfied or very satisfied</h2>
+
+<div class="row">
+  <div class="col-md-10">
+    <table class="table table-hover">
+      <tbody>
+        <% 5.downto(1).each do |rating| %>
+          <tr>
+            <td class="col-md-4">
+              <%= label_for_rating(rating) %>
+            </td>
+            <td class="col-md-2">
+              <%= day_aggregate["rating_#{rating}"] %> (<strong><%= link_to_if day_aggregate["rating_#{rating}"] > 0, pluralize(comments_by_rating[rating].size, 'comment'), "#comments-for-rating-#{rating}", class: "link-inherit" %></strong>)
+            </td>
+            <td class="col-md-4 hidden-xs hidden-sm">
+              <div class="progress remove-bottom-margin">
+                <% percentage = (100 * day_aggregate["rating_#{rating}"] / day_aggregate["total"].to_f).round %>
+                <div class="progress-bar <%= css_classes_for_rating(rating) %>" role="progressbar" aria-valuenow="<%= percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= percentage %>%;">
+                  <%= percentage %>%
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+
+        <tr>
+          <td><strong>Total</strong></td>
+          <td>
+            <strong><%= day_aggregate["total"] %></strong>
+          </td>
+          <td class="col-md-4">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

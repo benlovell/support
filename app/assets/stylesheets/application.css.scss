@@ -30,3 +30,11 @@ thead {
 .list-group.disabled {
   color: $nav-disabled-link-hover-color;
 }
+
+#service-feedback {
+  .comment {
+    font-size: 15px;
+  }
+
+  padding-bottom: 10px;
+}

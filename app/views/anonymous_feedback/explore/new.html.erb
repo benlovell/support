@@ -1,8 +1,47 @@
 <%= content_for :page_title, "FeedEx" %>
 <%= content_for :header, "Explore GOV.UK anonymous feedback" %>
 
-<%= semantic_form_for @explore, url: { action: "create" }, html: { novalidate: false } do |f| %>
-  <%= f.input :by_url, label: "By URL", required: true, input_html: { class: "form-md-6", :"aria-required" => true, type: "url"} %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Anonymous problem reports
+      </div>
+      <div class="panel-body">
+        <%= semantic_form_for @explore_by_url, url: { action: "create" }, html: { novalidate: false } do |f| %>
+          <%= f.input :by_url, label: "By URL", required: true, input_html: { class: "form-md-6", :"aria-required" => true, type: "url"} %>
+          <%= f.action :submit, label: "Explore", button_html: { class: "btn btn-success" } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="alert alert-info">
+      Users submit this feedback via the <strong>Is there anything wrong with this page?</strong> forms at the bottom of GOV.UK pages.
+    </div>
+  </div>
+</div>
 
-  <%= f.action :submit, label: "Explore", button_html: { class: "btn btn-success" } %>
-<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Service feedback
+      </div>
+      <div class="panel-body">
+        <%= semantic_form_for @explore_service_feedback, url: { action: "create" }, html: { novalidate: false } do |f| %>
+          <%= f.input :slug, label: "Service slug on GOV.UK", required: true, as: :select, collection: f.object.all_slugs, input_html: { class: "form-md-2", :"aria-required" => true} %>
+          <%= f.input :day_option, label: "Day", required: true, as: :radio, collection: ["yesterday", "today", "a specific day"], input_html: { :"aria-required" => true} %>
+          <%= f.input :specific_day, label: false, input_html: { class: "form-md-2", :"calendar-enabled" => true } %>
+          <span class="help-block">The date should be in the format <em>dd-mm-yyyy</em> eg 28-02-2014</span>
+          <%= f.action :submit, label: "Explore", button_html: { class: "btn btn-success" } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="alert alert-info">
+      Users fill out the <a href="https://www.gov.uk/service-manual/measurement/user-satisfaction.html">satisfaction survey</a> after completing a transaction that started on GOV.UK.
+    </div>
+  </div>
+</div>

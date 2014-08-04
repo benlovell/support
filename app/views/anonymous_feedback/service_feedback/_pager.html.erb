@@ -1,0 +1,9 @@
+<ul class="pager">
+  <li class="previous"><%= link_to "&larr; #{day.yesterday.to_s(:govuk_date)}".html_safe, anonymous_feedback_service_feedback_path(slug, day.yesterday) %></li>
+  <li><%= link_to "Yesterday", anonymous_feedback_service_feedback_path(slug, 'yesterday') %></li>
+  <li><%= link_to "Today", anonymous_feedback_service_feedback_path(slug, 'today') %></li>
+  <% tomorrow_disabled = (day.tomorrow > Date.today) %>
+  <li class="next <%= tomorrow_disabled ? 'disabled' : '' %>">
+    <%= link_to "#{day.tomorrow.to_s(:govuk_date)} &rarr;".html_safe, tomorrow_disabled ? '#' : anonymous_feedback_service_feedback_path(slug, day.tomorrow) %>
+  </li>
+</ul>

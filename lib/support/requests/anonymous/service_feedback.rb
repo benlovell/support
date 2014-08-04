@@ -8,6 +8,14 @@ module Support
         include ServiceFeedbackValidations
         attr_accessible :details, :slug, :service_satisfaction_rating
 
+        scope :with_comments_by_day_and_slug, ->(day, slug) {
+          where(slug: slug, created_at: day.beginning_of_day..day.end_of_day).
+            where('details is not null').
+            free_of_personal_info.
+            only_actionable.
+            order("created_at desc")
+        }
+
         def self.transaction_slugs
           uniq.pluck(:slug).sort
         end

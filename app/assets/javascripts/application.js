@@ -22,4 +22,15 @@ $(document).ready(function() {
   });
 
   $('.dropdown-toggle').dropdown();
+
+  $('#support_requests_anonymous_explore_service_feedback_day').attr('disabled', 'disabled');
+
+  $('input[name="support_requests_anonymous_explore_service_feedback[day_option]"]').change(function () {
+    var specific_day = ($(this).val() == "a specific day");
+    if (specific_day) {
+      $('#support_requests_anonymous_explore_service_feedback_specific_day').removeAttr('disabled');
+    } else {
+      $('#support_requests_anonymous_explore_service_feedback_specific_day').attr('disabled', 'disabled');
+    }
+  });
 });

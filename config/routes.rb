@@ -16,6 +16,12 @@ Support::Application.routes.draw do
 
     get 'problem_reports', to: redirect {|p, req| req.params[:path] ? "/anonymous_feedback?path=" + req.params[:path] : "/anonymous_feedback"}
 
+    get 'service_feedback/:slug/:date',
+        to: "service_feedback#index",
+        format: false,
+        as: "service_feedback",
+        constraints: { date: /today|yesterday|\d{4}-\d{2}-\d{2}/}
+
     namespace :problem_reports do
       get :explore, to: redirect("/anonymous_feedback/explore"), format: false
     end
