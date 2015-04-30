@@ -30,7 +30,12 @@
   <%= breadcrumbs style: :bootstrap %>
 
   <div class="page-title">
-    <h1><%= yield :header %></h1>
+    <h1>
+      <% if content_for :sub_header %>
+        <span class="small"><%= yield :sub_header %></span>
+      <% end %>
+      <%= yield :header %>
+    </h1>
   </div>
 
   <%= yield %>
