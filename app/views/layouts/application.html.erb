@@ -29,7 +29,7 @@
 <% content_for :content do %>
   <%= breadcrumbs style: :bootstrap %>
 
-  <div class="page-title">
+  <div class="page-title <% if content_for :secondary_header %>remove-bottom-margin<% end %>">
     <h1>
       <% if content_for :sub_header %>
         <span class="small"><%= yield :sub_header %></span>
@@ -37,6 +37,15 @@
       <%= yield :header %>
     </h1>
   </div>
+
+  <% if content_for :secondary_header %>
+  <div class="page-title">
+    <h1 style="font-size: 40px">
+      <span class="small">/apply-for-visa</span>
+      <%= yield :secondary_header %>
+    </h1>
+  </div>
+  <% end %>
 
   <%= yield %>
 <% end %>

@@ -1,6 +1,18 @@
 <%= content_for :page_title, "Feedback for “#{params[:path]}”" %>
-<%= content_for :header, "Feedback for “#{params[:path]}”" %>
+<%= content_for :sub_header, 'Feedback for “/apply-for-visa”' %>
+<%= content_for :header, "Apply for a UK Visa" %>
 <% breadcrumb :anonymous_feedback_by_path, params[:path] %>
+
+<p class="lead">
+  Show feedback for <a href="#">7 days</a>, <a href="#">30 days</a> or <a href="#">90 days</a><br />
+  or select a date range <strong class="add-left-margin add-right-margin">Start</strong> <select><option>30 April 2015</option></select><strong class="add-left-margin add-right-margin">End</strong> <select><option>30 April 2015</option></select>
+</p>
+
+<p class="lead add-bottom-margin">
+  5 responses between 24 March to 31 March
+</p>
+
+<a href="#" class="add-bottom-margin btn btn-default">Export as CSV</a>
 
 <% if @feedback.empty? %>
   <div class="no-content no-content-bordered">There is no feedback for this path.</div>
