@@ -1,10 +1,13 @@
 require 'support/requests/anonymous/explore'
 
 class AnonymousFeedback::ExploreController < AuthorisationController
-  authorize_resource class: Support::Requests::Anonymous::Explore
+  skip_authorization_check
 
   def new
     @explore_by_url = Support::Requests::Anonymous::ExploreByUrl.new
+  end
+
+  def organisations
   end
 
   def create

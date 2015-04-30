@@ -17,6 +17,7 @@ Support::Application.routes.draw do
       get :explore, to: redirect("/anonymous_feedback/explore"), format: false
     end
 
+    get :organisations, to: "explore#organisations", format: false
     get :explore, to: "explore#new", format: false
     post :explore, to: "explore#create", format: false
   end
