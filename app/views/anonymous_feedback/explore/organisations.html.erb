@@ -52,26 +52,15 @@
   <tbody>
 
     <% [
-      'https://www.gov.uk/apply-uk-visa',
-      'https://www.gov.uk/check-uk-visa',
-      'https://www.gov.uk/browse/visas-immigration',
-      'https://www.gov.uk/bringing-food-animals-plants-into-uk',
-      'https://www.gov.uk/duty-free-goods',
-      'https://www.gov.uk/importing-vehicles-into-the-uk',
-      'https://www.gov.uk/moving-to-uk',
-      'https://www.gov.uk/customs-seizures',
-      'https://www.gov.uk/healthcare-immigration-application',
-      'https://www.gov.uk/join-family-in-uk',
-      'https://www.gov.uk/remain-in-uk-family',
-      'https://www.gov.uk/visas-partner-dies',
-      'https://www.gov.uk/ancestry-visa',
-      'https://www.gov.uk/visas-when-you-separate-or-divorce',
+      {url: 'https://www.gov.uk/apply-uk-visa', title: 'Apply for a UK Visa'},
+      {url: 'https://www.gov.uk/check-uk-visa', title: 'Check if you need a UK visa'},
     ].each_with_index do |m, i|
       j = 20 - i
     %>
       <tr>
         <td>
-          <a href="<%= m %>"><%= m.sub(/https:\/\/www.gov.uk/, '') %></a>
+          <strong><a href="#" class="remove-top-margin remove-bottom-margin"><%= m[:title] %></a></strong><br />
+          <a href="#" class="text-muted"><%= m[:url].sub(/https:\/\/www.gov.uk/, '') %></a>
         </td>
         <td>
           <a href="#"><%= rand(j*3..j*10) %> items</a>
