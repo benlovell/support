@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery-ui/datepicker
+//= require select2
 
 $(document).ready(function() {
   $('input[calendar-enabled=true]').datepicker({minDate: 0, dateFormat: 'dd-mm-yy'});
@@ -22,4 +23,5 @@ $(document).ready(function() {
   });
 
   $('.dropdown-toggle').dropdown();
+  $(".select2").select2();
 });

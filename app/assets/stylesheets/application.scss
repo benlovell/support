@@ -13,7 +13,10 @@
  */
 
 @import "govuk_admin_template";
+@import "select2";
+@import "select2-bootstrap";
 @import "breadcrumbs";
+
 
 thead {
   background-color: $gray-lighter;
