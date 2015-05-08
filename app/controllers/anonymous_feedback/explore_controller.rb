@@ -8,6 +8,7 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   end
 
   def organisations
+    @organisation = Organisation.find(params[:id])
   end
 
   def create

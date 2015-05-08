@@ -1,6 +1,7 @@
 require 'support/navigation/feedex_section'
 require 'support/navigation/emergency_contact_details_section'
 require 'support/navigation/section_groups'
+require 'support/navigation/section_groups'
 
 module ApplicationHelper
   def all_section_groups
@@ -17,6 +18,10 @@ module ApplicationHelper
 
   def in_feedex?
     current_page?('/anonymous_feedback')
+  end
+
+  def organisations
+    Organisation.all
   end
 
   def nav_link_to(section, options = { is_active: false })

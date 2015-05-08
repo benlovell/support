@@ -1,5 +1,18 @@
+<% if @last_date != anonymous_contact.created_at.to_date %>
+  <!--<tr class="table-header-secondary">
+    <td colspan="3">
+      <strong class="add-top-margin remove-bottom-margin">
+        <a href="#"><%= anonymous_contact.created_at.to_date.to_s(:govuk_date_short) %></a>
+      </strong>
+    </td>
+  </tr>-->
+<% end %>
 <tr class="anonymous-contact">
-  <th scope="row" class="no-wrap"><%= anonymous_contact.created_at.to_date.to_s(:govuk_date) %></th>
+  <th class="no-wrap">
+    <% if @last_date != anonymous_contact.created_at.to_date %>
+      <a href="#"><%= anonymous_contact.created_at.to_date.to_s(:govuk_date_short) %></a>
+    <% end %>
+  </th>
   <td>
     <%= render partial: "feedback", locals: { anonymous_contact: anonymous_contact } %>
   </td>
@@ -20,3 +33,4 @@
     <% end %>
   </td>
 </tr>
+<% @last_date = anonymous_contact.created_at.to_date %>

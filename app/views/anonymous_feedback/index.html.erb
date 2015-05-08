@@ -1,6 +1,6 @@
 <%= content_for :page_title, "Feedback for “#{params[:path]}”" %>
-<%= content_for :sub_header, 'Feedback for “/apply-for-visa”' %>
-<%= content_for :header, "Apply for a UK Visa" %>
+<%= content_for :sub_header, 'Feedback for' %>
+<%= content_for :header, params[:path] %>
 <% breadcrumb :anonymous_feedback_by_path, params[:path] %>
 
 <p class="lead">

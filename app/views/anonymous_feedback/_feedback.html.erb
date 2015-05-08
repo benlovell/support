@@ -1,7 +1,6 @@
 <% if anonymous_contact.is_a?(Support::Requests::Anonymous::ProblemReport) %>
-  <strong>action</strong>: <%= anonymous_contact.what_doing %>
-  <br/>
-  <strong>problem</strong>: <%= anonymous_contact.what_wrong %>
+  <div class="bold"><%= anonymous_contact.what_doing.capitalize %></div>
+  <%= anonymous_contact.what_wrong %>
 <% elsif anonymous_contact.is_a?(Support::Requests::Anonymous::ServiceFeedback) %>
   <strong>rating</strong>: <%= anonymous_contact.service_satisfaction_rating %>
   <% if anonymous_contact.details.present? %>

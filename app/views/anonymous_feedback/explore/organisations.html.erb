@@ -1,55 +1,45 @@
 <%= content_for :page_title, "Anonymous Feedback" %>
 <%= content_for :sub_header, "Feedback for" %>
-<%= content_for :header, "Department for Education" %>
+<%= content_for :header, @organisation.title %>
 
 <% breadcrumb :feedex %>
 
-<div class="text-right">
-<ul class="pagination ">
-
-
-      <li class="page active">
-  <a href="/anonymous_feedback?path=%2F">1</a>
-</li>
-
-      <li class="page">
-  <a rel="next" href="/anonymous_feedback?page=2&amp;path=%2F">2</a>
-</li>
-
-      <li class="page">
-  <a href="/anonymous_feedback?page=3&amp;path=%2F">3</a>
-</li>
-
-      <li class="page">
-  <a href="/anonymous_feedback?page=4&amp;path=%2F">4</a>
-</li>
-
-      <li class="page">
-  <a href="/anonymous_feedback?page=5&amp;path=%2F">5</a>
-</li>
-
-      <li class="page gap disabled"><a href="#" onclick="return false;">…</a></li>
-  <li class="next_page">
-  <a rel="next" href="/anonymous_feedback?page=2&amp;path=%2F">Next ›</a>
-</li>
-
-  <li class="last next">
-  <a href="/anonymous_feedback?page=71&amp;path=%2F">Last »</a>
-</li>
-
-</ul>
-</div>
-
-<table class="table table-bordered">
+<table class="table table-bordered" data-module="filterable-table">
   <thead>
     <tr class="table-header">
-      <th>Page</th>
+      <th style="width: 800px">Page</th>
       <th>7 days</th>
       <th>30 days</th>
       <th>90 days</th>
     </tr>
+    <tr class="if-no-js-hide table-header-secondary">
+      <td colspan="4">
+        <form>
+          <label for="table-filter" class="rm">Filter organisations</label>
+          <input id="table-filter" type="text" class="form-control normal js-filter-table-input" placeholder="Filter table">
+        </form>
+      </td>
+    </tr>
   </thead>
   <tbody>
+    <% @organisation.content_items.sort_by(&:path).each do |content_item| %>
+      <% path = content_item.path
+         problem_reports = content_item.problem_reports %>
+      <tr>
+        <td>
+          <a href="/anonymous_feedback?path=<%= path %>" class="breakable"><%= path %></a>
+        </td>
+        <td>
+          <a href="#"><%= problem_reports.count %> items</a>
+        </td>
+        <td>
+          <a href="#"><%= problem_reports.count %> items</a>
+        </td>
+        <td>
+          <a href="#"><%= problem_reports.count %> items</a>
+        </td>
+      </tr>
+    <% end %>
 
     <% [
       {url: 'https://www.gov.uk/apply-uk-visa', title: 'Apply for a UK Visa'},
@@ -57,7 +47,7 @@
     ].each_with_index do |m, i|
       j = 20 - i
     %>
-      <tr>
+      <!--<tr>
         <td>
           <strong><a href="#" class="remove-top-margin remove-bottom-margin"><%= m[:title] %></a></strong><br />
           <a href="#" class="text-muted"><%= m[:url].sub(/https:\/\/www.gov.uk/, '') %></a>
@@ -71,7 +61,7 @@
         <td>
           <a href="#"><%= rand(j*20..j*60) %> items</a>
         </td>
-      </tr>
+      </tr>-->
     <% end %>
   </tbody>
 </table>
