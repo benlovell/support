@@ -3,19 +3,47 @@
 <%= content_for :header, params[:path] %>
 <% breadcrumb :anonymous_feedback_by_path, params[:path] %>
 
-<p class="lead">
+<div class="navbar navbar-default add-big-bottom-margin">
+  <nav class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a href="/sites/cabinetoffice/hits/summary?period=all-time">
+            <span class="rm">Switch to </span>
+          All feedback
+</a>      </li>
+      <li>
+        <a href="/sites/cabinetoffice/hits/summary?period=yesterday">
+            <span class="rm">Switch to </span>
+          Feedback since <span class="glyphicon glyphicon-chevron-down glyphicon-smaller-than-text " style="margin-left: 5px"></span>
+</a>      </li>
+      <li>
+        <a href="/sites/cabinetoffice/hits/summary?period=last-seven-days">
+            <span class="rm">Switch to </span>
+          Feedback before <span class="glyphicon glyphicon-chevron-down glyphicon-smaller-than-text " style="margin-left: 5px"></span>
+</a>      </li>
+      <li>
+        <a href="/sites/cabinetoffice/hits/summary">
+            <span class="rm">Current period: </span>
+          Feedback between <span class="glyphicon glyphicon-chevron-down glyphicon-smaller-than-text" style="margin-left: 5px"></span>
+</a>      </li>
+
+    </ul>
+  </nav>
+</div>
+
+<!--<p class="lead">
   Show feedback for <a href="#">7 days</a>, <a href="#">30 days</a> or <a href="#">90 days</a><br />
   or select a date range <strong class="add-left-margin add-right-margin">Start</strong> <select><option>30 April 2015</option></select><strong class="add-left-margin add-right-margin">End</strong> <select><option>30 April 2015</option></select>
-</p>
+</p>-->
 
-<p class="lead add-bottom-margin">
+<!--<p class="lead add-bottom-margin">
   5 responses between 24 March to 31 March
-</p>
-
-<a href="#" class="add-bottom-margin btn btn-default">Export as CSV</a>
+</p>-->
 
 <% if @feedback.empty? %>
   <div class="no-content no-content-bordered">There is no feedback for this path.</div>
 <% else %>
+  <a href="#" class="add-bottom-margin btn btn-default pull-right">Export as CSV</a>
+  <h2 class="add-bottom-margin"><%= @feedback.count %> responses</h2>
   <%= render partial: "results", locals: { feedback: @feedback } %>
 <% end %>
