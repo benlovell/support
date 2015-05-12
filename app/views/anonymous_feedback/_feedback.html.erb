@@ -10,10 +10,19 @@
     <%= anonymous_contact.what_wrong.capitalize if anonymous_contact.what_wrong %>
   <% end %>
 <% elsif anonymous_contact.is_a?(Support::Requests::Anonymous::ServiceFeedback) %>
-  <strong>rating</strong>: <%= anonymous_contact.service_satisfaction_rating %>
+  <div <% if anonymous_contact.details.present? %>class="add-label-margin"<% end %>>
+    <% anonymous_contact.service_satisfaction_rating.times do %>
+      <span class="glyphicon glyphicon-star"></span>
+    <% end %>
+    <% (5 - anonymous_contact.service_satisfaction_rating).times do %>
+      <span class="glyphicon glyphicon-star-empty text-muted"></span>
+    <% end %>
+    <b class="add-left-margin">
+      <%= anonymous_contact.service_satisfaction_rating %> – 
+      <%= how_satisfied(anonymous_contact.service_satisfaction_rating) %></b>
+  </div>
   <% if anonymous_contact.details.present? %>
-    <br/>
-    <strong>comment</strong>: <%= anonymous_contact.details %>
+    <%= anonymous_contact.details %>
   <% end %>
 <% else %>
   <%= anonymous_contact.details %>
